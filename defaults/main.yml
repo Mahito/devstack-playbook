@@ -1,0 +1,10 @@
+devstack:
+  repo: https://git.openstack.org/openstack-dev/devstack
+  dest: /srv/devstack
+  version: HEAD
+  user:  vagrant
+  group: vagrant
+  conf:
+    host_ip: "192.168.10.10"
+    enable_services:  []
+    disable_services: []

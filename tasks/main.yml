@@ -1,0 +1,28 @@
+- name: install packages
+  apt:
+    name:  "{{ item }}"
+    state: present
+  sudo: yes
+  with_items:
+    - git
+
+- name: git clone
+  git:
+    repo:    "{{ devstack.repo }}"
+    dest:    "{{ devstack.dest }}"
+    version: "{{ devstack.version }}"
+  sudo: yes
+
+- name: change permission
+  file:
+    path: "{{ devstack.dest }}"
+    state: directory
+    owner: "{{ devstack.user }}"
+    group: "{{ devstack.group }}"
+    recurse: yes
+  sudo: yes
+
+- name: set local.conf
+  template:
+    src: local.conf.j2
+    dest: "{{ devstack.dest }}/local.conf"

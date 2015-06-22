@@ -1,6 +1,16 @@
 - hosts: devstack
-  tasks:
-    - include: "tasks/main.yml"
-  vars_files:
-    - "defaults/main.yml"
-    - "vars/main.yml"
+  roles:
+    - ../devstack-playbook
+  vars:
+    devstack:
+      repo: https://git.openstack.org/openstack-dev/devstack
+      dest: /srv/devstack
+      version: HEAD
+      user:  vagrant
+      group: vagrant
+      conf:
+        host_ip: "192.168.10.10"
+        enable_services: []
+        #  - ceilometer
+        #  - sahara
+        disable_services: []
